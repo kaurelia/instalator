@@ -7,5 +7,6 @@ edition = "2021"
 
 [dependencies]
 cfg-if = "1.0.0"
+colorful = "0.2.2"
 sevenz-rust = { version = "0.5.4", features = ["aes256"] }
 steamlocate = "1.2.1"

@@ -1,12 +1,32 @@
-use std::collections::HashMap;
+use core::panic;
+use std::{collections::HashMap, io::Read};
 use sevenz_rust::*;
 use steamlocate::{SteamDir, SteamApp};
+use colorful::{Color,Colorful};
+use std::io::{stdin, stdout};
+use std::io::prelude::*;
+
 
 const ASSETTO_CORSA_APP_ID: u32 = 244210;
 
+fn pause() {
+    let mut stdin = stdin();
+    let mut stdout = stdout();
+    write!(stdout, "Wciśnij Enter, żeby kontynuować...").unwrap();
+    stdout.flush().unwrap();
+    let _ = stdin.read(&mut [0u8]).unwrap();
+}
+
 fn main() {
     let addon_folder_name: &'static str = "123";
-    let mut steam_directory = SteamDir::locate().unwrap();
+    println!("{}", "Szukanie aplikacji steam na komputerze...".color(Color::Cyan));
+    let steam_directory_option = SteamDir::locate();
+    if !steam_directory_option.is_none(){
+        println!("{}", "Nie znaleziono aplikacji steam na twoim komputerze".color(Color::Red));
+        pause();
+        panic!("");
+    }
+    let mut steam_directory = steam_directory_option.unwrap();
     let apps: &HashMap<u32, Option<SteamApp>> = steam_directory.apps();
     let assetto_corsa = apps.get(&ASSETTO_CORSA_APP_ID);
     if assetto_corsa.is_none() {
