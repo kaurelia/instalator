@@ -21,7 +21,7 @@ fn main() {
     let addon_folder_name: &'static str = "123";
     println!("{}", "Szukanie aplikacji steam na komputerze...".color(Color::Cyan));
     let steam_directory_option = SteamDir::locate();
-    if !steam_directory_option.is_none(){
+    if steam_directory_option.is_none(){
         println!("{}", "Nie znaleziono aplikacji steam na twoim komputerze".color(Color::Red));
         pause();
         panic!("");
