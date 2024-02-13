@@ -1,6 +1,7 @@
 use colorful::{Color, Colorful};
 use core::panic;
 use sevenz_rust::*;
+use std::ffi::OsString;
 use std::io::prelude::*;
 use std::io::{stdin, stdout};
 use std::path::Path;
@@ -41,12 +42,11 @@ fn pause() {
 }
 
 fn main() {
-    let addon_folder_name: &'static str = "123";
     println!(
         "{}",
         "Szukanie aplikacji steam na komputerze...".color(Color::Cyan)
     );
-    let steam_directory_option = SteamDir::locate();
+    let steam_directory_option: Option<SteamDir> = SteamDir::locate();
     if steam_directory_option.is_none() {
         println!(
             "{}",
@@ -55,13 +55,13 @@ fn main() {
         pause();
         panic!("");
     }
-    let mut steam_directory = steam_directory_option.unwrap();
+    let mut steam_directory: SteamDir = steam_directory_option.unwrap();
     println!(
         "{}",
         "Szukanie gry Assetto Corsa na komputerze...".color(Color::Cyan)
     );
     let apps: &HashMap<u32, Option<SteamApp>> = steam_directory.apps();
-    let assetto_corsa = apps.get(&ASSETTO_CORSA_APP_ID);
+    let assetto_corsa: Option<&Option<SteamApp>> = apps.get(&ASSETTO_CORSA_APP_ID);
     if assetto_corsa.is_none() {
         println!(
             "{}",
@@ -70,7 +70,7 @@ fn main() {
         pause();
         panic!("");
     }
-    let assetto_corsa = assetto_corsa.unwrap();
+    let assetto_corsa: &Option<SteamApp> = assetto_corsa.unwrap();
     if assetto_corsa.is_none() {
         println!(
             "{}",
@@ -79,8 +79,9 @@ fn main() {
         pause();
         panic!("");
     }
-    let assetto_corsa = assetto_corsa.as_ref().unwrap();
-    let destination_path_result = (&assetto_corsa.path).clone().into_os_string().into_string();
+    let assetto_corsa: &SteamApp = assetto_corsa.as_ref().unwrap();
+    let destination_path_result: Result<String, OsString> =
+        (&assetto_corsa.path).clone().into_os_string().into_string();
     if destination_path_result.is_err() {
         println!(
             "{}",
@@ -89,9 +90,9 @@ fn main() {
         pause();
         panic!("");
     }
-    let destination_path = destination_path_result.unwrap();
+    let destination_path: String = destination_path_result.unwrap();
     println!("{}", "Instalacja modyfikacji...".color(Color::Cyan));
-    let addon = Modification::new();
+    let addon: Modification<'static> = Modification::new();
     if addon.modification_type_folder_name.is_none() {
         println!(
             "{}",
@@ -100,11 +101,11 @@ fn main() {
         pause();
         panic!("");
     }
-    let modification_type_folder_name = addon.modification_type_folder_name.unwrap();
-    let destination_path_result = Path::new(&destination_path)
+    let modification_type_folder_name: &str = addon.modification_type_folder_name.unwrap();
+    let destination_path_result: Result<String, OsString> = Path::new(&destination_path)
         .join("content")
         .join(modification_type_folder_name)
-        .join(addon_folder_name)
+        .join(FOLDER_NAME)
         .into_os_string()
         .into_string();
     if destination_path_result.is_err() {
@@ -115,8 +116,9 @@ fn main() {
         pause();
         panic!("");
     }
-    let destination_path = destination_path_result.unwrap();
-    let decompress_result = decompress_file(addon.archive_name, destination_path);
+    let destination_path: String = destination_path_result.unwrap();
+    let decompress_result: Result<(), Error> =
+        decompress_file(addon.archive_name, destination_path);
     match decompress_result {
         Ok(_) => {
             println!(
