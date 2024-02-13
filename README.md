@@ -32,4 +32,4 @@ cargo clean && cargo build
 
 ## Where to find builded binary?
 
-Get into `target/[debug/release]`. There should be a `instalator` binary file. Depends on operating system it might be without any extension, or will appear with `.exe` extension.
+Get into `target/[debug/release]` folder. There should be a `instalator` binary file. Depends on operating system it might be without any extension, or will appear with `.exe` extension.
