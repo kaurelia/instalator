@@ -1,0 +1,10 @@
+{
+  "name": "instalator",
+  "version": "1.0.0",
+  "repository": "https://github.com/kaurelia/instalator",
+  "author": "",
+  "scripts": {
+    "build": "cargo clean && cargo build --release",
+    "build-development": "cargo clean && cargo build"
+  }
+}
