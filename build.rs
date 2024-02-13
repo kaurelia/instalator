@@ -1,6 +1,7 @@
 #[macro_use]
 extern crate dotenv_codegen;
 
+use colorful::{Color, Colorful};
 use dotenv::dotenv;
 use dotenv_build::output;
 
@@ -14,6 +15,6 @@ fn main() {
         "rs_autodrom_slomczyn_rotax",
     ];
     if !allowed_values.contains(&dotenv!("FOLDER_NAME")) {
-        panic!("Not allowed value in .env file");
+        panic!("{}", "Not allowed value in .env file".color(Color::Red));
     }
 }

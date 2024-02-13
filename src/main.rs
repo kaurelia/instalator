@@ -10,7 +10,7 @@ use steamlocate::{SteamApp, SteamDir};
 const ASSETTO_CORSA_APP_ID: u32 = 244210;
 const FOLDER_NAME: &str = env!("FOLDER_NAME");
 
-struct Modification {
+struct Modification<'a> {
     archive_name: String,
     modification_type_folder_name: Option<&'a str>,
 }
