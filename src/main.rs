@@ -1,11 +1,12 @@
 use colorful::{Color, Colorful};
 use core::panic;
 use sevenz_rust::*;
-use std::ffi::OsString;
-use std::io::prelude::*;
-use std::io::{stdin, stdout};
-use std::path::Path;
-use std::{collections::HashMap, io::Read};
+use std::{
+    collections::HashMap,
+    ffi::OsString,
+    io::{prelude::*, stdin, stdout, Read},
+    path::Path,
+};
 use steamlocate::{SteamApp, SteamDir};
 
 const ASSETTO_CORSA_APP_ID: u32 = 244210;
