@@ -3,10 +3,34 @@ use core::panic;
 use sevenz_rust::*;
 use std::io::prelude::*;
 use std::io::{stdin, stdout};
+use std::path::Path;
 use std::{collections::HashMap, io::Read};
 use steamlocate::{SteamApp, SteamDir};
 
 const ASSETTO_CORSA_APP_ID: u32 = 244210;
+const FOLDER_NAME: &str = env!("FOLDER_NAME");
+
+struct Modification {
+    archive_name: String,
+    modification_type_folder_name: Option<&'a str>,
+}
+
+impl Modification<'static> {
+    fn new() -> Modification<'static> {
+        let folder_name = FOLDER_NAME.to_string();
+        let modification_type_folder_name: Option<&str> = match folder_name.clone().as_str() {
+            "zs_gokart125" => Some("cars"),
+            "rs_bydgoszcz_rotax" => Some("tracks"),
+            "rs_torun_rotax" => Some("tracks"),
+            "rs_autodrom_slomczyn_rotax" => Some("tracks"),
+            _ => None,
+        };
+        return Modification {
+            modification_type_folder_name,
+            archive_name: format!("{}.7z", folder_name),
+        };
+    }
+}
 
 fn pause() {
     let mut stdin = stdin();
@@ -61,9 +85,20 @@ fn main() {
         .into_os_string()
         .into_string()
         .unwrap();
-    let destination_path = format!("{destination_path}\\content\\cars\\{addon_folder_name}");
     println!("{}", "Instalacja modyfikacji...".color(Color::Cyan));
-    let decompress_result = decompress_file(format!("{addon_folder_name}.7z"), destination_path);
+    let addon = Modification::new();
+    if addon.modification_type_folder_name.is_none() {
+        panic!("błąd");
+    }
+    let modification_type_folder_name = addon.modification_type_folder_name.unwrap();
+    let destination_path = Path::new(&destination_path)
+        .join("content")
+        .join(modification_type_folder_name)
+        .join(addon_folder_name)
+        .into_os_string()
+        .into_string()
+        .unwrap();
+    let decompress_result = decompress_file(addon.archive_name, destination_path);
     match decompress_result {
         Ok(_) => {
             println!(

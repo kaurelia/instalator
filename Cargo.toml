@@ -2,11 +2,16 @@
 name = "instalator"
 version = "0.1.0"
 edition = "2021"
+build = "build.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cfg-if = "1.0.0"
 colorful = "0.2.2"
 sevenz-rust = { version = "0.5.4", features = ["aes256"] }
 steamlocate = "1.2.1"
+
+[build-dependencies]
+dotenv-build = "0.1.1"
+dotenv = "0.15.0"
+dotenv_codegen = "0.15.0"
