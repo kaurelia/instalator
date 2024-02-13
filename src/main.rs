@@ -94,7 +94,7 @@ fn main() {
     let destination_path: String = destination_path_result.unwrap();
     println!("{}", "Instalacja modyfikacji...".color(Color::Cyan));
     let addon: Modification<'static> = Modification::new();
-    if !Path::new(".").join(FOLDER_NAME).exists() {
+    if !Path::new(".").join(addon.archive_name.clone()).exists() {
         println!(
             "{} {}{}",
             "Wygląda na to, że w katalogu brakuje pliku".color(Color::Red),
