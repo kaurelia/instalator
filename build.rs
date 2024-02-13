@@ -15,6 +15,10 @@ fn main() {
         "rs_autodrom_slomczyn_rotax",
     ];
     if !allowed_values.contains(&dotenv!("FOLDER_NAME")) {
-        panic!("{}", "Not allowed value in .env file".color(Color::Red));
+        panic!(
+            "{}",
+            "Not allowed value in FOLDER_NAME environment variable. Please check .env file"
+                .color(Color::Red)
+        );
     }
 }
