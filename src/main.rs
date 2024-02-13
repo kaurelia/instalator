@@ -116,7 +116,6 @@ fn main() {
     let destination_path_result: Result<String, OsString> = Path::new(&destination_path)
         .join("content")
         .join(modification_type_folder_name)
-        .join(FOLDER_NAME)
         .into_os_string()
         .into_string();
     if destination_path_result.is_err() {
