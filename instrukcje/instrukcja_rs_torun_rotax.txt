@@ -1,0 +1,15 @@
+Jak zainstalować modyfikacje?
+
+Uruchom program instalator.exe. Pamiętaj, że archiwum z rozszerzeniem 7z (7zip) musi znajdować się w tym samym folderze co program.
+
+UWAGA: instalator jest dedykowany każdej modyfikacji z osobna. Jeśli kupiłeś więcej niż jedną modyfikację, to musisz uruchomić każdy instalator oddzielnie.
+
+Jak zainstalować modyfikacje ręcznie?
+
+Zainstaluj program 7zip znajdujący się po tym adresem: https://www.7-zip.org/
+
+Rozpakuj pobrany plik "rs_torun_rotax.7z" do folderu "rs_torun_rotax"
+
+Przenieś folder "rs_torun_rotax" do katalogu z grą "tracks".
+Standardowo zajduję się on w tej lokalizacji: 
+C:\Program Files(x86)\Steam\SteamApps\common\assettocorsa\content
