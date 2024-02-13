@@ -80,24 +80,42 @@ fn main() {
         panic!("");
     }
     let assetto_corsa = assetto_corsa.as_ref().unwrap();
-    let destination_path = (&assetto_corsa.path)
-        .clone()
-        .into_os_string()
-        .into_string()
-        .unwrap();
+    let destination_path_result = (&assetto_corsa.path).clone().into_os_string().into_string();
+    if destination_path_result.is_err() {
+        println!(
+            "{}",
+            "Wystąpił problem podczas przetwarzania ścieżki do gry Assetto Corsa".color(Color::Red)
+        );
+        pause();
+        panic!("");
+    }
+    let destination_path = destination_path_result.unwrap();
     println!("{}", "Instalacja modyfikacji...".color(Color::Cyan));
     let addon = Modification::new();
     if addon.modification_type_folder_name.is_none() {
-        panic!("błąd");
+        println!(
+            "{}",
+            "Nie odnaleziono folderu odpowiadającego modyfikacji".color(Color::Red)
+        );
+        pause();
+        panic!("");
     }
     let modification_type_folder_name = addon.modification_type_folder_name.unwrap();
-    let destination_path = Path::new(&destination_path)
+    let destination_path_result = Path::new(&destination_path)
         .join("content")
         .join(modification_type_folder_name)
         .join(addon_folder_name)
         .into_os_string()
-        .into_string()
-        .unwrap();
+        .into_string();
+    if destination_path_result.is_err() {
+        println!(
+            "{}",
+            "Wystąpił problem podczas ustalania ścieżki końcowej".color(Color::Red)
+        );
+        pause();
+        panic!("");
+    }
+    let destination_path = destination_path_result.unwrap();
     let decompress_result = decompress_file(addon.archive_name, destination_path);
     match decompress_result {
         Ok(_) => {
