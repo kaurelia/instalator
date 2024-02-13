@@ -13,6 +13,7 @@ fn main() {
         "rs_bydgoszcz_rotax",
         "rs_torun_rotax",
         "rs_autodrom_slomczyn_rotax",
+        "rs_tor_poznanl",
     ];
     if !allowed_values.contains(&dotenv!("FOLDER_NAME")) {
         panic!(

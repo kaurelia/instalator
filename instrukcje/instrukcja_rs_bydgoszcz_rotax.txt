@@ -1,6 +1,6 @@
 Jak zainstalować modyfikacje?
 
-Uruchom program instalator.exe. Pamiętaj, że archiwum z rozszerzeniem 7z (7zip) musi znajdować się w tym samym folderze co program.
+Uruchom program Zainstaluj_tor_Bydgoszcz.exe. Pamiętaj, że archiwum z rozszerzeniem 7z (7zip) musi znajdować się w tym samym folderze co program.
 
 UWAGA: instalator jest dedykowany każdej modyfikacji z osobna. Jeśli kupiłeś więcej niż jedną modyfikację, to musisz uruchomić każdy instalator oddzielnie.
 

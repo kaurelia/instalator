@@ -25,6 +25,7 @@ impl Modification<'static> {
             "rs_bydgoszcz_rotax" => Some("tracks"),
             "rs_torun_rotax" => Some("tracks"),
             "rs_autodrom_slomczyn_rotax" => Some("tracks"),
+            "rs_tor_poznanl" => Some("tracks"),
             _ => None,
         };
         return Modification {

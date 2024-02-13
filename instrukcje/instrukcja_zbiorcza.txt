@@ -1,6 +1,6 @@
 Jak zainstalować modyfikacje?
 
-Uruchom program instalator.exe. Pamiętaj, że archiwum z rozszerzeniem 7z (7zip) musi znajdować się w tym samym folderze co program.
+Uruchom instalatory. Pamiętaj, że archiwum z rozszerzeniem 7z (7zip) musi znajdować się w tym samym folderze co instalator.
 
 UWAGA: instalator jest dedykowany każdej modyfikacji z osobna. Jeśli kupiłeś więcej niż jedną modyfikację, to musisz uruchomić każdy instalator oddzielnie.
 
@@ -32,4 +32,8 @@ Przenieś folder "rs_autodrom_slomczyn_rotax" do katalogu z grą "tracks".
 Standardowo zajduję się on w tej lokalizacji: 
 C:\Program Files(x86)\Steam\SteamApps\common\assettocorsa\content
 
+Rozpakuj pobrany plik "rs_tor_poznanl.7z" do folderu "rs_tor_poznanl"
 
+Przenieś folder "rs_tor_poznanl" do katalogu z grą "tracks".
+Standardowo zajduję się on w tej lokalizacji: 
+C:\Program Files(x86)\Steam\SteamApps\common\assettocorsa\content
